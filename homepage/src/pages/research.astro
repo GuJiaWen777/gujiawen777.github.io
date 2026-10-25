@@ -1,0 +1,131 @@
+---
+import Base from '../layouts/Base.astro';
+import { directions, projects, researchAreas } from '../data/research';
+---
+
+<Base title="Research — Jiawen Gu">
+  <div class="container">
+    <section class="section">
+      <h1 class="page-title">Research</h1>
+      <p class="page-lead">
+        My research focuses on developing <strong>robust and generalizable machine learning
+        systems</strong> for ubiquitous sensing and wearable technology.
+      </p>
+      <div class="tags area-tags">
+        {researchAreas.map((a) => <span class="tag">{a}</span>)}
+      </div>
+    </section>
+
+    <section class="section">
+      <h2 class="section-title">Research Directions</h2>
+      <div class="grid-auto" style="margin-top: 1.5rem;">
+        {
+          directions.map((d) => (
+            <div class="card">
+              <div class="card-icon" aria-hidden="true">{d.icon}</div>
+              <h3 class="card-title">{d.title}</h3>
+              <p class="card-text">{d.description}</p>
+              {d.points && (
+                <ul class="card-list">
+                  {d.points.map((p) => (
+                    <li>{p}</li>
+                  ))}
+                </ul>
+              )}
+            </div>
+          ))
+        }
+      </div>
+    </section>
+
+    <section class="section">
+      <h2 class="section-title">Projects</h2>
+      <div class="projects">
+        {
+          projects.map((p) => (
+            <article class="card project-card">
+              <div class="project-head">
+                <h3 class="project-title">{p.title}</h3>
+                <span class="project-period">{p.period}</span>
+              </div>
+              <ul class="project-points">
+                {p.points.map((pt) => (
+                  <li>{pt}</li>
+                ))}
+              </ul>
+              <div class="tags">
+                {p.tags.map((t) => (
+                  <span class="tag">{t}</span>
+                ))}
+              </div>
+            </article>
+          ))
+        }
+      </div>
+    </section>
+
+    <section class="section">
+      <h2 class="section-title">Collaboration</h2>
+      <p class="page-lead">
+        I'm open to collaborations in Human Activity Recognition, Domain Generalization, and LLM
+        applications. Feel free to <a href="mailto:1006893541@qq.com">reach out</a>!
+      </p>
+    </section>
+  </div>
+</Base>
+
+<style>
+  .page-title {
+    margin: 0 0 1rem;
+    font-size: 2rem;
+    font-weight: 800;
+  }
+
+  .page-lead {
+    color: var(--fg-muted);
+    max-width: 44rem;
+  }
+
+  .area-tags {
+    margin-top: 1.25rem;
+  }
+
+  .projects {
+    display: grid;
+    gap: 1.25rem;
+    margin-top: 1.5rem;
+  }
+
+  .project-head {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+
+  .project-title {
+    margin: 0;
+    font-size: 1.08rem;
+    font-weight: 650;
+  }
+
+  .project-period {
+    flex-shrink: 0;
+    font-family: var(--font-mono);
+    font-size: 0.82rem;
+    font-weight: 600;
+    color: var(--accent);
+  }
+
+  .project-points {
+    margin: 0.9rem 0 0;
+    padding-left: 1.15rem;
+    color: var(--fg-muted);
+    font-size: 0.93rem;
+  }
+  .project-points li { margin-block: 0.3rem; }
+  .project-points li::marker { color: var(--accent); }
+
+  .project-card .tags { margin-top: 1rem; }
+</style>
