@@ -7,7 +7,7 @@
 ## 本地开发
 
 ```bash
-cd astro
+cd homepage
 npm install        # 首次
 npm run dev        # 开发服务器 → http://localhost:4321/homepage/
 ```
@@ -17,7 +17,7 @@ npm run dev        # 开发服务器 → http://localhost:4321/homepage/
 ## 目录结构
 
 ```
-astro/
+homepage/
 ├── public/                  # 静态资源（favicon、头像）
 ├── src/
 │   ├── content.config.ts    # 内容集合定义（notes）
@@ -34,7 +34,7 @@ astro/
 └── astro.config.mjs         # base 路径、KaTeX、Shiki 配置
 ```
 
-详细的更新指南（加论文 / 加 News / 发笔记）见 [astro/README.md](astro/README.md)。
+详细的更新指南（加论文 / 加 News / 发笔记）见 [homepage/README.md](homepage/README.md)。
 
 ## 部署
 
