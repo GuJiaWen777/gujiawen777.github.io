@@ -1,0 +1,88 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import { url } from '../utils';
+
+interface Props {
+  note: CollectionEntry<'notes'>;
+}
+
+const { note } = Astro.props;
+const { title, description, date, tags } = note.data;
+const dateStr = date
+  ? date.toLocaleDateString('zh-CN', { year: 'numeric', month: 'long', day: 'numeric' })
+  : '';
+---
+
+<a class="card note-card" href={url(`notes/${note.id}`)}>
+  <div class="note-card-head">
+    <h3 class="note-title">{title}</h3>
+    {dateStr && <span class="note-date">{dateStr}</span>}
+  </div>
+  {description && <p class="note-desc">{description}</p>}
+  {
+    tags.length > 0 && (
+      <div class="tags">
+        {tags.map((t) => (
+          <span class="tag">{t}</span>
+        ))}
+      </div>
+    )
+  }
+  <span class="note-arrow" aria-hidden="true">→</span>
+</a>
+
+<style>
+  .note-card {
+    display: block;
+    position: relative;
+    color: inherit;
+    padding: 1.35rem 1.5rem;
+  }
+  .note-card:hover { color: inherit; }
+
+  .note-card-head {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 0.75rem;
+  }
+
+  .note-title {
+    margin: 0;
+    font-size: 1.02rem;
+    font-weight: 650;
+    transition: color var(--transition);
+  }
+  .note-card:hover .note-title { color: var(--accent); }
+
+  .note-date {
+    flex-shrink: 0;
+    font-family: var(--font-mono);
+    font-size: 0.78rem;
+    color: var(--fg-subtle);
+  }
+
+  .note-desc {
+    margin-top: 0.4rem;
+    color: var(--fg-muted);
+    font-size: 0.9rem;
+  }
+
+  .note-card .tags { margin-top: 0.75rem; }
+
+  .note-arrow {
+    position: absolute;
+    right: 1.25rem;
+    bottom: 1.1rem;
+    font-size: 0.95rem;
+    color: var(--fg-subtle);
+    opacity: 0;
+    transform: translateX(-4px);
+    transition: opacity var(--transition), transform var(--transition);
+  }
+  .note-card:hover .note-arrow {
+    opacity: 1;
+    transform: none;
+    color: var(--accent);
+  }
+</style>

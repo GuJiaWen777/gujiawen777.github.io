@@ -1,0 +1,62 @@
+# Astro 版部署工作流（参考文件，暂不生效）
+#
+# 正式切换到 Astro 站点时：
+#   1. 把本文件内容复制到 .github/workflows/deploy.yml（覆盖原 MkDocs 工作流）
+#   2. 若 astro/ 已挪到仓库根目录，删除所有 working-directory: astro、
+#      并把 cache-dependency-path 和 upload 的 path 改为对应路径
+#   3. 仓库 Settings → Pages → Source 选择 "GitHub Actions"
+
+name: Deploy Astro site to Pages
+
+on:
+  push:
+    branches: [main]
+    paths: ['astro/**', '.github/workflows/deploy.yml']
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: astro/package-lock.json
+
+      - name: Install dependencies
+        run: npm ci
+        working-directory: astro
+
+      - name: Build
+        run: npm run build
+        working-directory: astro
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: astro/dist
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4

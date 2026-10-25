@@ -1,0 +1,42 @@
+---
+import type { Publication } from '../data/publications';
+
+interface Props {
+  pub: Publication;
+}
+
+const { pub } = Astro.props;
+const authorsHtml = pub.authors
+  .map((a) => (a.startsWith('Jiawen Gu') ? `<strong>${a}</strong>` : a))
+  .join(', ');
+---
+
+<article class="card pub-card">
+  <h3 class="pub-title">{pub.title}</h3>
+  <p class="pub-authors" set:html={authorsHtml} />
+  <p class="pub-venue">
+    <span class:list={['status-dot', pub.status]} title={pub.status === 'published' ? 'Published' : 'Under Review'}></span>
+    <span>{pub.venue}{pub.status === 'under-review' ? ' · Under Review' : ''}</span>
+  </p>
+  {
+    pub.links && (
+      <p class="pub-links">
+        {pub.links.map((l) => (
+          <a href={l.href} target="_blank" rel="noopener">{l.label}</a>
+        ))}
+      </p>
+    )
+  }
+  <div class="tags">
+    {pub.tags.map((t) => <span class="tag">{t}</span>)}
+  </div>
+</article>
+
+<style>
+  .pub-links {
+    display: flex;
+    gap: 1rem;
+    margin: 0.5rem 0 0;
+    font-size: 0.88rem;
+  }
+</style>

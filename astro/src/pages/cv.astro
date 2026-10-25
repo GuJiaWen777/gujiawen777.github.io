@@ -1,0 +1,160 @@
+---
+import Base from '../layouts/Base.astro';
+import PubCard from '../components/PubCard.astro';
+import { publications } from '../data/publications';
+
+const skills = [
+  'Python', 'PyTorch', 'Deep Learning', 'Domain Generalization',
+  'Human Activity Recognition', 'Meta-Learning', 'LLM', 'Transformer',
+  'LoRA', 'vLLM',
+];
+
+const awards = [
+  { year: '2025', text: 'First Prize, Shanghai Informatics Society Excellent Achievement Award' },
+  { year: '2025', text: 'Excellent Paper Award, 19th Graduate Academic Forum' },
+  { year: '2025', text: 'Second Prize (National), China Graduate Mathematical Modeling Competition' },
+  { year: '2023–2024', text: 'Third-Class Graduate Scholarship, Shanghai Normal University' },
+  { year: '2021', text: 'Progress Scholarship, Nanjing Agricultural University' },
+  { year: '2019', text: 'Second-Class Scholarship for Excellent Students, Nanjing Agricultural University' },
+];
+---
+
+<Base title="CV — Jiawen Gu">
+  <div class="container">
+    <section class="section">
+      <h1 class="page-title">Curriculum Vitae</h1>
+
+      <h2 class="section-title">Education</h2>
+      <div class="timeline cv-timeline">
+        <div class="timeline-item">
+          <span class="timeline-date">2023.09 – 2026.06</span>
+          <h3 class="timeline-heading">Master of Science in Computer Science and Technology</h3>
+          <p class="timeline-sub">Shanghai Normal University · College of Information, Mechanical and Electrical Engineering</p>
+        </div>
+        <div class="timeline-item">
+          <span class="timeline-date">2018.09 – 2022.06</span>
+          <h3 class="timeline-heading">Bachelor of Engineering in Network Engineering</h3>
+          <p class="timeline-sub">Nanjing Agricultural University · College of Artificial Intelligence</p>
+        </div>
+      </div>
+      <p class="coursework">
+        <strong>Relevant Coursework:</strong> Artificial Intelligence, Data Mining, Optimization
+        Theory, Cloud Computing and Big Data, Software Engineering
+      </p>
+    </section>
+
+    <section class="section">
+      <h2 class="section-title">Publications</h2>
+      {publications.map((pub) => <PubCard pub={pub} />)}
+    </section>
+
+    <section class="section">
+      <h2 class="section-title">Technical Skills</h2>
+      <div class="tags" style="margin-top: 1.25rem;">
+        {skills.map((s) => <span class="tag">{s}</span>)}
+      </div>
+    </section>
+
+    <section class="section">
+      <h2 class="section-title">Awards & Honors</h2>
+      <div class="table-wrap" style="margin-top: 1.25rem;">
+        <table>
+          <thead>
+            <tr><th>Year</th><th>Award</th></tr>
+          </thead>
+          <tbody>
+            {
+              awards.map((a) => (
+                <tr>
+                  <td class="award-year">{a.year}</td>
+                  <td>{a.text}</td>
+                </tr>
+              ))
+            }
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2 class="section-title">Service & Professional Development</h2>
+      <div class="service">
+        <div>
+          <h3 class="sub-title">Academic Service</h3>
+          <ul class="plain-list">
+            <li><strong>Reviewer</strong>, IEEE International Conference on Multimedia and Expo (ICME) 2026</li>
+            <li><strong>Reviewer</strong>, IEEE Transactions on Emerging Topics in Computational Intelligence (TETCI) 2025–2026</li>
+            <li><strong>STEM Education Volunteer</strong>: Delivered 3D printing workshops for primary/secondary school students</li>
+          </ul>
+        </div>
+        <div>
+          <h3 class="sub-title">Professional Development</h3>
+          <ul class="plain-list">
+            <li>Advanced training in machine learning, domain generalization, optimization</li>
+            <li>Extensive hands-on experience in PyTorch-based deep learning</li>
+            <li>Focus on HAR, cross-domain generalization, and lightweight LLM development</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2 class="section-title">Contact</h2>
+      <div class="table-wrap" style="margin-top: 1.25rem;">
+        <table>
+          <tbody>
+            <tr><td>📧 Email</td><td><a href="mailto:1006893541@qq.com">1006893541@qq.com</a></td></tr>
+            <tr><td>🔗 GitHub</td><td><a href="https://github.com/gujiawen777" target="_blank" rel="noopener">github.com/gujiawen777</a></td></tr>
+            <tr><td>📍 Location</td><td>Shanghai, China</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+  </div>
+</Base>
+
+<style>
+  .page-title {
+    margin: 0 0 1.5rem;
+    font-size: 2rem;
+    font-weight: 800;
+  }
+
+  .cv-timeline {
+    margin-top: 1.5rem;
+  }
+
+  .coursework {
+    margin-top: 1.5rem;
+    font-size: 0.93rem;
+    color: var(--fg-muted);
+  }
+
+  .award-year {
+    white-space: nowrap;
+    font-weight: 600;
+    color: var(--fg-muted);
+  }
+
+  .service {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+    margin-top: 1.25rem;
+  }
+
+  .sub-title {
+    margin: 0 0 0.6rem;
+    font-size: 1rem;
+    font-weight: 650;
+  }
+
+  .plain-list {
+    margin: 0;
+    padding-left: 1.15rem;
+    color: var(--fg-muted);
+    font-size: 0.93rem;
+  }
+  .plain-list li { margin-block: 0.35rem; }
+  .plain-list li::marker { color: var(--accent); }
+</style>

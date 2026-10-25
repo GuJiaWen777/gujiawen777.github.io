@@ -1,0 +1,51 @@
+---
+import Base from '../layouts/Base.astro';
+import PubCard from '../components/PubCard.astro';
+import { publications } from '../data/publications';
+import { researchAreas } from '../data/research';
+---
+
+<Base title="Publications — Jiawen Gu">
+  <div class="container">
+    <section class="section">
+      <h1 class="page-title">Publications</h1>
+
+      <h2 class="group-title">2026</h2>
+      {
+        publications
+          .filter((p) => p.status === 'published')
+          .map((pub) => <PubCard pub={pub} />)
+      }
+
+      <h2 class="group-title">Under Review</h2>
+      {
+        publications
+          .filter((p) => p.status === 'under-review')
+          .map((pub) => <PubCard pub={pub} />)
+      }
+    </section>
+
+    <section class="section">
+      <h2 class="section-title">Research Areas</h2>
+      <div class="tags" style="margin-top: 1.25rem;">
+        {researchAreas.map((a) => <span class="tag">{a}</span>)}
+      </div>
+    </section>
+  </div>
+</Base>
+
+<style>
+  .page-title {
+    margin: 0 0 1.5rem;
+    font-size: 2rem;
+    font-weight: 800;
+  }
+
+  .group-title {
+    margin: 2rem 0 1.1rem;
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: var(--fg-muted);
+  }
+  .group-title:first-of-type { margin-top: 0; }
+</style>

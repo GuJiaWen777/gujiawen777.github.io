@@ -1,0 +1,47 @@
+---
+import Base from '../../layouts/Base.astro';
+import NoteCard from '../../components/NoteCard.astro';
+import { getCollection } from 'astro:content';
+
+const notes = (await getCollection('notes')).sort(
+  (a, b) => (b.data.date?.getTime() ?? 0) - (a.data.date?.getTime() ?? 0)
+);
+
+/** 按分类分组，未出现的分类不展示 */
+const categoryOrder = ['机器学习', '深度学习', '大语言模型'];
+const categories = categoryOrder.filter((c) => notes.some((n) => n.data.category === c));
+---
+
+<Base title="Notes — Jiawen Gu" description="Research notes and learning materials on machine learning, deep learning, and LLMs.">
+  <div class="container">
+    <section class="section">
+      <h1 class="page-title">Notes</h1>
+      <p class="page-lead">Research notes and learning materials.</p>
+    </section>
+
+    {
+      categories.map((cat) => (
+        <section class="section">
+          <h2 class="section-title">{cat}</h2>
+          <div class="grid-auto" style="margin-top: 1.5rem;">
+            {notes.filter((n) => n.data.category === cat).map((note) => (
+              <NoteCard note={note} />
+            ))}
+          </div>
+        </section>
+      ))
+    }
+  </div>
+</Base>
+
+<style>
+  .page-title {
+    margin: 0 0 0.75rem;
+    font-size: 2rem;
+    font-weight: 800;
+  }
+
+  .page-lead {
+    color: var(--fg-muted);
+  }
+</style>
