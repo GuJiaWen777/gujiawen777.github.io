@@ -1,4 +1,4 @@
-/** 站点部署在 /homepage 子路径下，所有内部链接必须拼上 base */
+/** base 从 Astro 配置推导（用户站为空串），所有内部链接统一走 url() 拼接 */
 export const base = (import.meta.env.BASE_URL || '/').replace(/\/+$/, '');
 
 /**
