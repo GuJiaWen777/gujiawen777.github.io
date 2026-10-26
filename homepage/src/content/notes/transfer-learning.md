@@ -2,6 +2,7 @@
 title: 迁移学习
 description: Fine-tuning、Multitask Learning、Domain-adversarial training、Zero-shot Learning 与 Self-taught Clustering。
 category: 机器学习
+date: 2026-03-08
 tags:
   - Transfer Learning
   - Fine-tuning
