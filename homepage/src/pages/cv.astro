@@ -21,107 +21,125 @@ const awards = [
 
 <Base title="CV — Jiawen Gu">
   <div class="container">
-    <section class="section">
-      <h1 class="page-title">Curriculum Vitae</h1>
+    <h1 class="page-title">Curriculum Vitae</h1>
 
-      <h2 class="section-title">Education</h2>
-      <div class="timeline cv-timeline">
-        <div class="timeline-item">
-          <span class="timeline-date">2023.09 – 2026.06</span>
-          <h3 class="timeline-heading">Master of Science in Computer Science and Technology</h3>
-          <p class="timeline-sub">Shanghai Normal University · College of Information, Mechanical and Electrical Engineering</p>
-        </div>
-        <div class="timeline-item">
-          <span class="timeline-date">2018.09 – 2022.06</span>
-          <h3 class="timeline-heading">Bachelor of Engineering in Network Engineering</h3>
-          <p class="timeline-sub">Nanjing Agricultural University · College of Artificial Intelligence</p>
-        </div>
+    <section class="section">
+      <div class="section-head">
+        <h2 class="section-title">Education</h2>
       </div>
-      <p class="coursework">
-        <strong>Relevant Coursework:</strong> Artificial Intelligence, Data Mining, Optimization
-        Theory, Cloud Computing and Big Data, Software Engineering
-      </p>
-    </section>
-
-    <section class="section">
-      <h2 class="section-title">Publications</h2>
-      {publications.map((pub) => <PubCard pub={pub} />)}
-    </section>
-
-    <section class="section">
-      <h2 class="section-title">Technical Skills</h2>
-      <div class="tags" style="margin-top: 1.25rem;">
-        {skills.map((s) => <span class="tag">{s}</span>)}
+      <div class="section-body">
+        <div class="timeline cv-timeline">
+          <div class="timeline-item">
+            <span class="timeline-date">2023.09 – 2026.06</span>
+            <h3 class="timeline-heading">Master of Science in Computer Science and Technology</h3>
+            <p class="timeline-sub">Shanghai Normal University · College of Information, Mechanical and Electrical Engineering</p>
+          </div>
+          <div class="timeline-item">
+            <span class="timeline-date">2018.09 – 2022.06</span>
+            <h3 class="timeline-heading">Bachelor of Engineering in Network Engineering</h3>
+            <p class="timeline-sub">Nanjing Agricultural University · College of Artificial Intelligence</p>
+          </div>
+        </div>
+        <p class="coursework">
+          <strong>Relevant Coursework:</strong> Artificial Intelligence, Data Mining, Optimization
+          Theory, Cloud Computing and Big Data, Software Engineering
+        </p>
       </div>
     </section>
 
     <section class="section">
-      <h2 class="section-title">Awards & Honors</h2>
-      <div class="table-wrap" style="margin-top: 1.25rem;">
-        <table>
-          <thead>
-            <tr><th>Year</th><th>Award</th></tr>
-          </thead>
-          <tbody>
-            {
-              awards.map((a) => (
-                <tr>
-                  <td class="award-year">{a.year}</td>
-                  <td>{a.text}</td>
-                </tr>
-              ))
-            }
-          </tbody>
-        </table>
+      <div class="section-head">
+        <h2 class="section-title">Publications</h2>
+      </div>
+      <div class="section-body">
+        {publications.map((pub) => <PubCard pub={pub} />)}
       </div>
     </section>
 
     <section class="section">
-      <h2 class="section-title">Service & Professional Development</h2>
-      <div class="service">
-        <div>
-          <h3 class="sub-title">Academic Service</h3>
-          <ul class="plain-list">
-            <li><strong>Reviewer</strong>, IEEE International Conference on Multimedia and Expo (ICME) 2026</li>
-            <li><strong>Reviewer</strong>, IEEE Transactions on Emerging Topics in Computational Intelligence (TETCI) 2025–2026</li>
-            <li><strong>STEM Education Volunteer</strong>: Delivered 3D printing workshops for primary/secondary school students</li>
-          </ul>
-        </div>
-        <div>
-          <h3 class="sub-title">Professional Development</h3>
-          <ul class="plain-list">
-            <li>Advanced training in machine learning, domain generalization, optimization</li>
-            <li>Extensive hands-on experience in PyTorch-based deep learning</li>
-            <li>Focus on HAR, cross-domain generalization, and lightweight LLM development</li>
-          </ul>
+      <div class="section-head">
+        <h2 class="section-title">Technical Skills</h2>
+      </div>
+      <div class="section-body">
+        <div class="tags">
+          {skills.map((s) => <span class="tag">{s}</span>)}
         </div>
       </div>
     </section>
 
     <section class="section">
-      <h2 class="section-title">Contact</h2>
-      <div class="table-wrap" style="margin-top: 1.25rem;">
-        <table>
-          <tbody>
-            <tr><td>📧 Email</td><td><a href="mailto:1006893541@qq.com">1006893541@qq.com</a></td></tr>
-            <tr><td>🔗 GitHub</td><td><a href="https://github.com/gujiawen777" target="_blank" rel="noopener">github.com/gujiawen777</a></td></tr>
-            <tr><td>📍 Location</td><td>Shanghai, China</td></tr>
-          </tbody>
-        </table>
+      <div class="section-head">
+        <h2 class="section-title">Awards &amp; Honors</h2>
+      </div>
+      <div class="section-body">
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr><th>Year</th><th>Award</th></tr>
+            </thead>
+            <tbody>
+              {
+                awards.map((a) => (
+                  <tr>
+                    <td class="award-year">{a.year}</td>
+                    <td>{a.text}</td>
+                  </tr>
+                ))
+              }
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="section-head">
+        <h2 class="section-title">Service &amp; Professional Development</h2>
+      </div>
+      <div class="section-body">
+        <div class="service">
+          <div>
+            <h3 class="sub-title">Academic Service</h3>
+            <ul class="plain-list">
+              <li><strong>Reviewer</strong>, IEEE International Conference on Multimedia and Expo (ICME) 2026</li>
+              <li><strong>Reviewer</strong>, IEEE Transactions on Emerging Topics in Computational Intelligence (TETCI) 2025–2026</li>
+              <li><strong>STEM Education Volunteer</strong>: Delivered 3D printing workshops for primary/secondary school students</li>
+            </ul>
+          </div>
+          <div>
+            <h3 class="sub-title">Professional Development</h3>
+            <ul class="plain-list">
+              <li>Advanced training in machine learning, domain generalization, optimization</li>
+              <li>Extensive hands-on experience in PyTorch-based deep learning</li>
+              <li>Focus on HAR, cross-domain generalization, and lightweight LLM development</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="section-head">
+        <h2 class="section-title">Contact</h2>
+      </div>
+      <div class="section-body">
+        <div class="table-wrap">
+          <table>
+            <tbody>
+              <tr><td>📧 Email</td><td><a href="mailto:1006893541@qq.com">1006893541@qq.com</a></td></tr>
+              <tr><td>🔗 GitHub</td><td><a href="https://github.com/gujiawen777" target="_blank" rel="noopener">github.com/gujiawen777</a></td></tr>
+              <tr><td>📍 Location</td><td>Shanghai, China</td></tr>
+            </tbody>
+          </table>
+        </div>
       </div>
     </section>
   </div>
 </Base>
 
 <style>
-  .page-title {
-    margin: 0 0 1.5rem;
-    font-size: 2rem;
-    font-weight: 800;
-  }
-
   .cv-timeline {
-    margin-top: 1.5rem;
+    margin-top: 0.25rem;
   }
 
   .coursework {

@@ -14,7 +14,7 @@ const categories = categoryOrder.filter((c) => notes.some((n) => n.data.category
 
 <Base title="Notes — Jiawen Gu" description="Research notes and learning materials on machine learning, deep learning, and LLMs.">
   <div class="container">
-    <section class="section">
+    <section class="section section-intro">
       <h1 class="page-title">Notes</h1>
       <p class="page-lead">Research notes and learning materials.</p>
     </section>
@@ -22,11 +22,15 @@ const categories = categoryOrder.filter((c) => notes.some((n) => n.data.category
     {
       categories.map((cat) => (
         <section class="section">
-          <h2 class="section-title">{cat}</h2>
-          <div class="grid-auto" style="margin-top: 1.5rem;">
-            {notes.filter((n) => n.data.category === cat).map((note) => (
-              <NoteCard note={note} />
-            ))}
+          <div class="section-head">
+            <h2 class="section-title">{cat}</h2>
+          </div>
+          <div class="section-body">
+            <div class="grid-auto">
+              {notes.filter((n) => n.data.category === cat).map((note) => (
+                <NoteCard note={note} />
+              ))}
+            </div>
           </div>
         </section>
       ))

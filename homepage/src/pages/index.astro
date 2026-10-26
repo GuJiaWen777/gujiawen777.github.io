@@ -15,15 +15,13 @@ const recentNotes = (await getCollection('notes'))
 ---
 
 <Base>
-  <!-- ===== Hero ===== -->
+  <!-- ===== Hero（左文右图）===== -->
   <section class="hero">
-    <div class="container hero-inner">
-      <div class="hero-text fade-up">
-        <p class="hero-greet">Hi, I'm</p>
-        <h1 class="hero-name">
-          {site.name}
-          <span class="hero-name-cn">{site.chineseName}</span>
-        </h1>
+    <div class="container hero-inner fade-up">
+      <div class="hero-text">
+        <p class="hero-greet">// Hi, I'm</p>
+        <h1 class="hero-name">{site.name}</h1>
+        <p class="hero-name-cn marker">{site.chineseName}</p>
         <p class="hero-role">{site.role}</p>
         <p class="hero-affil">{site.affiliation} · {site.department}</p>
         <p class="hero-bio">{site.bio}</p>
@@ -34,7 +32,7 @@ const recentNotes = (await getCollection('notes'))
         </div>
         <p class="hero-location">📍 {site.location}</p>
       </div>
-      <img class="hero-photo fade-up-1" src={url('images/gjw.jpg')} alt={`${site.name} profile photo`} />
+      <img class="hero-photo" src={url('images/gjw.jpg')} alt={`${site.name} profile photo`} />
     </div>
   </section>
 
@@ -44,41 +42,45 @@ const recentNotes = (await getCollection('notes'))
       <div class="section-head">
         <h2 class="section-title">News</h2>
       </div>
-      <ul class="news-list">
-        {
-          news.map((n) => (
-            <li class:list={['news-item', n.highlight && 'highlight']}>
-              <span class="news-date">{n.date}</span>
-              <span class="news-text" set:html={n.html} />
-            </li>
-          ))
-        }
-      </ul>
+      <div class="section-body">
+        <ul class="news-list">
+          {
+            news.map((n) => (
+              <li class:list={['news-item', n.highlight && 'highlight']}>
+                <span class="news-date">{n.date}</span>
+                <span class="news-text" set:html={n.html} />
+              </li>
+            ))
+          }
+        </ul>
+      </div>
     </section>
 
     <!-- ===== Research Interests ===== -->
     <section class="section fade-up-2">
       <div class="section-head">
         <h2 class="section-title">Research Interests</h2>
-        <a class="section-more" href={url('research')}>View all →</a>
+        <a class="section-more" href={url('research')}>View all</a>
       </div>
-      <div class="grid-auto">
-        {
-          directions.map((d) => (
-            <div class="card">
-              <div class="card-icon" aria-hidden="true">{d.icon}</div>
-              <h3 class="card-title">{d.title}</h3>
-              <p class="card-text">{d.description}</p>
-              {d.points && (
-                <ul class="card-list">
-                  {d.points.map((p) => (
-                    <li>{p}</li>
-                  ))}
-                </ul>
-              )}
-            </div>
-          ))
-        }
+      <div class="section-body">
+        <div class="grid-auto">
+          {
+            directions.map((d) => (
+              <div class="card">
+                <div class="card-icon" aria-hidden="true">{d.icon}</div>
+                <h3 class="card-title">{d.title}</h3>
+                <p class="card-text">{d.description}</p>
+                {d.points && (
+                  <ul class="card-list">
+                    {d.points.map((p) => (
+                      <li>{p}</li>
+                    ))}
+                  </ul>
+                )}
+              </div>
+            ))
+          }
+        </div>
       </div>
     </section>
 
@@ -86,19 +88,23 @@ const recentNotes = (await getCollection('notes'))
     <section class="section fade-up-2">
       <div class="section-head">
         <h2 class="section-title">Selected Publications</h2>
-        <a class="section-more" href={url('publications')}>View all →</a>
+        <a class="section-more" href={url('publications')}>View all</a>
       </div>
-      {publications.map((pub) => <PubCard pub={pub} />)}
+      <div class="section-body">
+        {publications.map((pub) => <PubCard pub={pub} />)}
+      </div>
     </section>
 
     <!-- ===== Latest Notes ===== -->
     <section class="section fade-up-3">
       <div class="section-head">
         <h2 class="section-title">Latest Notes</h2>
-        <a class="section-more" href={url('notes')}>View all →</a>
+        <a class="section-more" href={url('notes')}>View all</a>
       </div>
-      <div class="grid-auto">
-        {recentNotes.map((note) => <NoteCard note={note} />)}
+      <div class="section-body">
+        <div class="grid-auto">
+          {recentNotes.map((note) => <NoteCard note={note} />)}
+        </div>
       </div>
     </section>
   </div>
@@ -112,22 +118,6 @@ const recentNotes = (await getCollection('notes'))
     overflow: hidden;
   }
 
-  .hero::before {
-    content: '';
-    position: absolute;
-    top: -180px;
-    right: -120px;
-    width: 480px;
-    height: 480px;
-    border-radius: 50%;
-    background: radial-gradient(
-      circle,
-      var(--accent-soft) 0%,
-      transparent 65%
-    );
-    pointer-events: none;
-  }
-
   .hero-inner {
     position: relative;
     display: flex;
@@ -138,27 +128,24 @@ const recentNotes = (await getCollection('notes'))
 
   .hero-greet {
     font-family: var(--font-mono);
-    font-size: 0.95rem;
+    font-size: 0.92rem;
     color: var(--accent);
-    margin-bottom: 0.5rem;
   }
 
   .hero-name {
-    margin: 0;
-    font-size: clamp(2rem, 5vw, 2.9rem);
+    margin: 0.5rem 0 0;
+    font-size: clamp(2.2rem, 5.5vw, 3rem);
     font-weight: 800;
     letter-spacing: -0.02em;
+    line-height: 1.15;
   }
 
   .hero-name-cn {
-    display: block;
-    margin-top: 0.35rem;
-    font-size: 0.45em;
-    font-weight: 600;
-    background: linear-gradient(120deg, var(--accent), var(--accent-2));
-    -webkit-background-clip: text;
-    background-clip: text;
-    color: transparent;
+    display: inline-block;
+    margin-top: 0.55rem;
+    font-size: clamp(1.15rem, 3vw, 1.4rem);
+    font-weight: 700;
+    letter-spacing: 0.08em;
   }
 
   .hero-role {
@@ -196,8 +183,8 @@ const recentNotes = (await getCollection('notes'))
 
   .hero-photo {
     flex-shrink: 0;
-    width: 200px;
-    height: 200px;
+    width: 190px;
+    height: 190px;
     border-radius: 50%;
     object-fit: cover;
     box-shadow: var(--shadow-md);

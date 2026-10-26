@@ -7,7 +7,7 @@ import { researchAreas } from '../data/research';
 
 <Base title="Publications — Jiawen Gu">
   <div class="container">
-    <section class="section">
+    <section class="section section-intro">
       <h1 class="page-title">Publications</h1>
 
       <h2 class="group-title">2026</h2>
@@ -26,9 +26,13 @@ import { researchAreas } from '../data/research';
     </section>
 
     <section class="section">
-      <h2 class="section-title">Research Areas</h2>
-      <div class="tags" style="margin-top: 1.25rem;">
-        {researchAreas.map((a) => <span class="tag">{a}</span>)}
+      <div class="section-head">
+        <h2 class="section-title">Research Areas</h2>
+      </div>
+      <div class="section-body">
+        <div class="tags">
+          {researchAreas.map((a) => <span class="tag">{a}</span>)}
+        </div>
       </div>
     </section>
   </div>
