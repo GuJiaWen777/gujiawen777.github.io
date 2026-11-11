@@ -1,12 +1,13 @@
 {
-  "name": "homepage-astro",
+  "name": "gujiawen777.github.io",
   "type": "module",
   "version": "1.0.0",
   "private": true,
   "scripts": {
     "dev": "astro dev",
     "build": "astro build",
-    "preview": "astro preview"
+    "preview": "astro preview",
+    "check": "astro check"
   },
   "dependencies": {
     "@astrojs/markdown-remark": "^7.3.4",
@@ -14,5 +15,13 @@
     "katex": "^0.16.22",
     "rehype-katex": "^7.0.1",
     "remark-math": "^6.0.0"
+  },
+  "description": "Personal academic homepage built with Astro",
+  "engines": {
+    "node": ">=20"
+  },
+  "devDependencies": {
+    "@astrojs/check": "^0.9.12",
+    "typescript": "^6.0.3"
   }
 }
